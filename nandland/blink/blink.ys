@@ -1,0 +1,3 @@
+read_verilog blink.v
+synth_ice40 -top main
+write_json blink.json
