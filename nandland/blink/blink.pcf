@@ -1,2 +1,3 @@
-set_io D5 95
-set_io CLKIN 21
+set_io LED 56
+set_io CLK 15
+
