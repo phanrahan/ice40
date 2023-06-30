@@ -67,7 +67,7 @@ module VgaProcessor
     //Colour On/Off
     always @(posedge i_Clk)
         begin
-          if ((r_HPos < 640) & (r_VPos < 480)) 
+          if ((r_HPos >= 50 & r_HPos < 690) & (r_VPos >= 33 & r_VPos < 513))
             begin
                 o_Red_Colour_On = 1'b1;
             end
@@ -81,38 +81,38 @@ endmodule
 
 module top 
     (
-        input i_Clk,
-        output o_VGA_R0,
-        output o_VGA_R1,
-        output o_VGA_R2,
-        output o_VGA_G0,
-        output o_VGA_G1,
-        output o_VGA_G2,
-        output o_VGA_B0,
-        output o_VGA_B1,
-        output o_VGA_B2,
-        output o_VGA_HSync,
-        output o_VGA_VSync
+        input CLK,
+        output VGA_R0,
+        output VGA_R1,
+        output VGA_R2,
+        output VGA_G0,
+        output VGA_G1,
+        output VGA_G2,
+        output VGA_B0,
+        output VGA_B1,
+        output VGA_B2,
+        output VGA_HSync,
+        output VGA_VSync
     );
  
     wire w_redColourPin;
  
     VgaProcessor processor
     (
-        .i_Clk(i_Clk),
-        .o_HSync(o_VGA_HSync),
-        .o_VSync(o_VGA_VSync),
+        .i_Clk(CLK),
+        .o_HSync(VGA_HSync),
+        .o_VSync(VGA_VSync),
         .o_Red_Colour_On(w_redColourPin)
     );
  
-    assign o_VGA_R0 = w_redColourPin; 
-    assign o_VGA_R1 = w_redColourPin;
-    assign o_VGA_R2 = w_redColourPin;
-    assign o_VGA_G0 = w_redColourPin; 
-    assign o_VGA_G1 = w_redColourPin;
-    assign o_VGA_G2 = w_redColourPin;
-    assign o_VGA_B0 = w_redColourPin; 
-    assign o_VGA_B1 = w_redColourPin;
-    assign o_VGA_B2 = w_redColourPin;
+    assign VGA_R0 = w_redColourPin; 
+    assign VGA_R1 = w_redColourPin;
+    assign VGA_R2 = w_redColourPin;
+    assign VGA_G0 = w_redColourPin; 
+    assign VGA_G1 = w_redColourPin;
+    assign VGA_G2 = w_redColourPin;
+    assign VGA_B0 = w_redColourPin; 
+    assign VGA_B1 = w_redColourPin;
+    assign VGA_B2 = w_redColourPin;
  
 endmodule

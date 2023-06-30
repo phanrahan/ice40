@@ -6,7 +6,7 @@ PNR=nextpnr-ice40
 DEVICE = hx1k
 PACKAGE = vq100
 
-PCF = $(NAME).pcf
+PCF = goboard.pcf
 
 QUIET = -q
 
@@ -14,7 +14,7 @@ all: $(NAME).bin
 
 %.bin: %.asc
 	icepack $< $@
-	icebox_vlog vga.asc > vga_chip.v
+	icebox_vlog $(NAME).asc > $(NAME)_chip.v
 
 %.asc: %.json
 	$(PNR) $(QUIET) --$(DEVICE) --package $(PACKAGE) --asc $@ --pcf $(PCF) --json $< 
