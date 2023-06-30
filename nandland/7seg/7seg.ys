@@ -1,0 +1,3 @@
+read_verilog 7seg.v
+synth_ice40 -top top
+write_json 7seg.json

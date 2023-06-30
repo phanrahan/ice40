@@ -23,21 +23,21 @@ set_io --warn-no-port Switch[2]  54
 set_io --warn-no-port Switch[3]  52
 
 # ------------ 7 segments -----------------------------------------------------
-#set_io --warn-no-port S1_A  3
-#set_io --warn-no-port S1_B  4
-#set_io --warn-no-port S1_C  93
-#set_io --warn-no-port S1_D  91
-#set_io --warn-no-port S1_E  90
-#set_io --warn-no-port S1_F  1
-#set_io --warn-no-port S1_G  2
+set_io --warn-no-port Segment1_A  3
+set_io --warn-no-port Segment1_B  4
+set_io --warn-no-port Segment1_C  93
+set_io --warn-no-port Segment1_D  91
+set_io --warn-no-port Segment1_E  90
+set_io --warn-no-port Segment1_F  1
+set_io --warn-no-port Segment1_G  2
 
-#set_io --warn-no-port S2_A  100
-#set_io --warn-no-port S2_B  99
-#set_io --warn-no-port S2_C  97
-#set_io --warn-no-port S2_D  95
-#set_io --warn-no-port S2_E  94
-#set_io --warn-no-port S2_F  8
-#set_io --warn-no-port S2_G  96
+set_io --warn-no-port Segment2_A  100
+set_io --warn-no-port Segment2_B  99
+set_io --warn-no-port Segment2_C  97
+set_io --warn-no-port Segment2_D  95
+set_io --warn-no-port Segment2_E  94
+set_io --warn-no-port Segment2_F  8
+set_io --warn-no-port Segment2_G  96
 
 # -------------------------- SYSTEM CLOCK ------------------------------------
 set_io --warn-no-port CLK 15
