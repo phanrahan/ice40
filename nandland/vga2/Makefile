@@ -4,7 +4,7 @@ NAME = vga
 PNR=nextpnr-ice40
 
 DEVICE = hx1k
-PACKAGE = vq100
+PACKAGE = tq144
 
 PCF = $(NAME).pcf
 
@@ -14,7 +14,7 @@ all: $(NAME).bin
 
 %.bin: %.asc
 	icepack $< $@
-	icebox_vlog vga.asc > vga_chip.v
+	icebox_vlog blink.asc > blink_chip.v
 
 %.asc: %.json
 	$(PNR) $(QUIET) --$(DEVICE) --package $(PACKAGE) --asc $@ --pcf $(PCF) --json $< 

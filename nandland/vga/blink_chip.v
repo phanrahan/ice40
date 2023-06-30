@@ -1,0 +1,1 @@
+// Reading file 'blink.asc'..
