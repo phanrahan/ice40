@@ -1,1 +1,1 @@
-# icestick
+# Latticce ice40 FPGAs
