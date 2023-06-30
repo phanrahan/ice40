@@ -1,3 +1,9 @@
+*.bin
+*.asc
+*.json
+*.rpt
+*_chip.v
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
