@@ -1,6 +1,6 @@
 // This should blink at a rate of ~ second
 
-module main (output  LED, input  CLK);
+module top (input CLK, output [0:3] LED);
   
   parameter N = 24;
   
@@ -9,6 +9,6 @@ module main (output  LED, input  CLK);
   always @(posedge CLK) begin
     cnt <= cnt+1;
   end
-  assign LED = cnt[N-1];
+  assign LED[0] = cnt[N-1];
 
 endmodule

@@ -7,7 +7,7 @@ DEVICE = hx1k
 PACKAGE = vq100
 FREQ = 25
 
-PCF = $(NAME).pcf
+PCF = goboard.pcf
 
 QUIET = -q
 
