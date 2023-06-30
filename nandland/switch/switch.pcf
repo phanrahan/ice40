@@ -1,0 +1,28 @@
+# ##############################################################################
+
+# iCEcube PCF
+
+# Version:            2014.12.27052
+
+# File Generated:     Apr 27 2015 09:46:33
+
+# Family & Device:    iCE40HX1K
+
+# Package:            VQ100
+
+# ##############################################################################
+
+### Main FPGA Clock
+set_io clk 15
+
+### LED Pins:
+set_io LED[0] 56
+set_io LED[1] 57
+set_io LED[2] 59
+set_io LED[3] 60
+
+## Push-Button Switches
+set_io Switch[0] 53
+set_io Switch[1] 51
+set_io Switch[2] 54
+set_io Switch[3] 52

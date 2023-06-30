@@ -1,10 +1,11 @@
-NAME = vga
+NAME = switch
 
 #PNR=arachne-pnr
 PNR=nextpnr-ice40
 
 DEVICE = hx1k
 PACKAGE = vq100
+FREQ = 25
 
 PCF = $(NAME).pcf
 
@@ -14,10 +15,10 @@ all: $(NAME).bin
 
 %.bin: %.asc
 	icepack $< $@
-	icebox_vlog vga.asc > vga_chip.v
+	icebox_vlog $(NAME).asc > $(NAME)_chip.v
 
 %.asc: %.json
-	$(PNR) $(QUIET) --$(DEVICE) --package $(PACKAGE) --asc $@ --pcf $(PCF) --json $< 
+	$(PNR) $(QUIET) --$(DEVICE) --package $(PACKAGE) --freq $(FREQ) --asc $@ --pcf $(PCF) --json $< 
 
 %.json: %.ys
 	yosys $<
