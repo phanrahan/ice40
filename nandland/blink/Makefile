@@ -30,7 +30,7 @@ explain: $(NAME).txt
 	icebox_explain $<
 
 clean:
-	rm -f *.bin *.asc *.json *.rpt
+	rm -f *.bin *.asc *.json *.rpt *_chip.v
 
 
 .PRECIOUS: %.bin %.asc %.json 
