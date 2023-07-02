@@ -5,6 +5,7 @@ PNR=nextpnr-ice40
 
 DEVICE = lp1k
 PACKAGE = tq144
+FREQ = 12
 
 PCF = icestick.pcf
 
@@ -17,10 +18,10 @@ all: $(NAME).bin
 	icebox_vlog $(NAME).asc > $(NAME)_chip.v
 
 %.asc: %.json
-	$(PNR) $(QUIET) --$(DEVICE) --package $(PACKAGE) --asc $@ --pcf $(PCF) --json $< 
+	$(PNR) $(QUIET) --$(DEVICE) --package $(PACKAGE) --freq $(FREQ) --asc $@ --pcf $(PCF) --json $< 
 
-%.json: %.ys
-	yosys $<
+%.json: %.v
+	yosys $(QUIET) -p 'synth_ice40 -top main -json $@' $<
 
 upload: $(NAME).bin
 	iceprog $<
