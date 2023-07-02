@@ -1,3 +1,0 @@
-read_verilog switch.v
-synth_ice40 -top top
-write_json switch.json

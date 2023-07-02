@@ -1,6 +1,6 @@
 // This should blink at a rate of ~ second
 
-module top (input CLK, output [0:3] LED);
+module main (input CLK, output [0:3] LED);
   
   parameter N = 24;
   

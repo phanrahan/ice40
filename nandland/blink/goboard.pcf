@@ -47,17 +47,17 @@ set_io --warn-no-port CLK 15
 #set_io --warn-no-port TX  74
 
 # -------------------------- VGA ---------------------------------------------
-set_io --warn-no-port VGA_HSync  26
-set_io --warn-no-port VGA_VSync  27
-set_io --warn-no-port VGA_R0  36
-set_io --warn-no-port VGA_R1  37
-set_io --warn-no-port VGA_R2  40
-set_io --warn-no-port VGA_G0  29
-set_io --warn-no-port VGA_G1  30
-set_io --warn-no-port VGA_G2  33
-set_io --warn-no-port VGA_B0  28
-set_io --warn-no-port VGA_B1  41
-set_io --warn-no-port VGA_B2  42
+set_io --warn-no-port VGA_HSync 26
+set_io --warn-no-port VGA_VSync 27
+set_io --warn-no-port VGA_R[0]  36
+set_io --warn-no-port VGA_R[1]  37
+set_io --warn-no-port VGA_R[2]  40
+set_io --warn-no-port VGA_G[0]  29
+set_io --warn-no-port VGA_G[1]  30
+set_io --warn-no-port VGA_G[2]  33
+set_io --warn-no-port VGA_B[0]  28
+set_io --warn-no-port VGA_B[1]  41
+set_io --warn-no-port VGA_B[2]  42
 
 # ------------ PMOD connector ------------------------------------------------
 #

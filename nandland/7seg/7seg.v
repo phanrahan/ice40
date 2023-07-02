@@ -10,7 +10,7 @@
 // http://en.wikipedia.org/wiki/Seven-segment_display
 ///////////////////////////////////////////////////////////////////////////////
 
-module top 
+module main 
   (
    input       CLK,
    input [0:3] Switch,

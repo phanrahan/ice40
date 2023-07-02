@@ -1,9 +1,11 @@
-module VgaProcessor
+module VGA
     (
         input i_Clk,
         output reg o_HSync = 0,
         output reg o_VSync = 0,
-        output reg o_Red_Colour_On = 0
+        output [11:0] o_x = 0,
+        output [11:0] o_y = 0,
+        output reg o_valid = 0
     );
  
     localparam TOTAL_WIDTH = 800;
@@ -12,6 +14,8 @@ module VgaProcessor
     localparam ACTIVE_HEIGHT = 480;
     localparam H_SYNC_COLUMN = 704;
     localparam V_SYNC_LINE = 523;
+    localparam H_PORCH = 50;
+    localparam V_PORCH = 33;
  
     reg [11:0] r_HPos = 0;
     reg [11:0] r_VPos = 0;
@@ -64,55 +68,58 @@ module VgaProcessor
             end  
         end
  
-    //Colour On/Off
+    //Valid region
     always @(posedge i_Clk)
         begin
-          if ((r_HPos >= 50 & r_HPos < 690) & (r_VPos >= 33 & r_VPos < 513))
+          if ((r_HPos >= H_PORCH & r_HPos < 690) & (r_VPos >= V_PORCH & r_VPos < 513))
             begin
-                o_Red_Colour_On = 1'b1;
+                o_valid = 1'b1;
             end
           else
             begin
-                o_Red_Colour_On = 1'b0;
+                o_valid = 1'b0;
             end  
         end
+
+    //assign o_x = r_HPos - H_PORCH;
+    //assign o_y = r_VPos - V_PORCH;
+    assign o_x = r_HPos;
+    assign o_y = r_VPos;
  
 endmodule
 
-module top 
+module main 
     (
         input CLK,
-        output VGA_R0,
-        output VGA_R1,
-        output VGA_R2,
-        output VGA_G0,
-        output VGA_G1,
-        output VGA_G2,
-        output VGA_B0,
-        output VGA_B1,
-        output VGA_B2,
+        output [2:0] VGA_R,
+        output [2:0] VGA_G,
+        output [2:0] VGA_B,
         output VGA_HSync,
         output VGA_VSync
     );
  
-    wire w_redColourPin;
+    wire w_valid;
+    wire [11:0] w_x;
+    wire [11:0] w_y;
  
-    VgaProcessor processor
+    VGA processor
     (
         .i_Clk(CLK),
         .o_HSync(VGA_HSync),
         .o_VSync(VGA_VSync),
-        .o_Red_Colour_On(w_redColourPin)
+        .o_x(w_x),
+        .o_y(w_y),
+        .o_valid(w_valid)
     );
- 
-    assign VGA_R0 = w_redColourPin; 
-    assign VGA_R1 = w_redColourPin;
-    assign VGA_R2 = w_redColourPin;
-    assign VGA_G0 = w_redColourPin; 
-    assign VGA_G1 = w_redColourPin;
-    assign VGA_G2 = w_redColourPin;
-    assign VGA_B0 = w_redColourPin; 
-    assign VGA_B1 = w_redColourPin;
-    assign VGA_B2 = w_redColourPin;
+
+    wire on = w_valid;
+    //wire on = w_valid & w_x[4];
+    //wire on = w_valid & (w_x[0] ^ w_y[0]);
+    wire [2:0] value = {on, on, on};
+
+    //assign VGA_R = w_x[0:2];
+    assign VGA_R = value;
+    assign VGA_G = 3'b0;
+    assign VGA_B = 3'b0;
  
 endmodule

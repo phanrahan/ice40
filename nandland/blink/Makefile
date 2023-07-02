@@ -20,8 +20,8 @@ all: $(NAME).bin
 %.asc: %.json
 	$(PNR) $(QUIET) --$(DEVICE) --package $(PACKAGE) --freq $(FREQ) --asc $@ --pcf $(PCF) --json $< 
 
-%.json: %.ys
-	yosys $<
+%.json: %.v
+	yosys $(QUIET) -p 'synth_ice40 -top main -json $@' $<
 
 upload: $(NAME).bin
 	iceprog $<
