@@ -1,1 +1,1 @@
-# Latticce ice40 FPGAs
+# Lattice ice40 FPGAs
