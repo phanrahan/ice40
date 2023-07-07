@@ -1,6 +1,5 @@
-NAME = blink
+NAME = lut
 
-#PNR=arachne-pnr
 PNR=nextpnr-ice40
 
 DEVICE = lp1k
