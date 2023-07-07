@@ -8,29 +8,33 @@ module VGA
         output reg o_valid = 0
     );
  
-    localparam TOTAL_WIDTH = 800;
-    localparam TOTAL_HEIGHT = 525;
-    localparam ACTIVE_WIDTH = 640;
-    localparam ACTIVE_HEIGHT = 480;
-    localparam H_SYNC_COLUMN = 704;
-    localparam V_SYNC_LINE = 523;
-    localparam H_PORCH = 50;
-    localparam V_PORCH = 33;
- 
+    localparam WIDTH = 640;
+    localparam HEIGHT = 480;
+
+    localparam H_SYNC_WIDTH = 96;
+    localparam H_FRONT_PORCH = 16;
+    localparam H_BACK_PORCH = 48;
+    localparam H_WIDTH = WIDTH + H_SYNC_WIDTH + H_FRONT_PORCH + H_BACK_BORCH;
+
+    localparam V_SYNC_WIDTH =  2;
+    localparam V_FRONT_PORCH = 11;
+    localparam V_BACK_PORCH = 31;
+    localparam V_HEIGHT = HEIGHT + V_SYNC_WIDTH + V_FRONT_PORCH + V_BACK_BORCH;
+
     reg [11:0] r_HPos = 0;
     reg [11:0] r_VPos = 0;
  
     //step pixel position throughout the screen
     always @(posedge i_Clk)
         begin
-          if (r_HPos < TOTAL_WIDTH-1)
+          if (r_HPos <  H_WIDTH-1)
             begin
                 r_HPos <= r_HPos + 1;
             end
           else
             begin
                 r_HPos <= 0;
-                if (r_VPos < TOTAL_HEIGHT-1)
+                if (r_VPos < V_HEIGHT-1)
                   begin
                     r_VPos <= r_VPos + 1;
                   end
@@ -38,14 +42,13 @@ module VGA
                   begin
                     r_VPos <= 0;
                   end
- 
             end  
         end
  
     //Horizontal sync
     always @(posedge i_Clk)
         begin
-          if (r_HPos < H_SYNC_COLUMN)
+          if (r_HPos < H_SYNC_WIDTH)
             begin
                 o_HSync = 1'b1;
             end
@@ -58,7 +61,7 @@ module VGA
     //Vertical sync
     always @(posedge i_Clk)
         begin
-          if (r_VPos < V_SYNC_LINE)
+          if (r_VPos < V_SYNC_WIDTH)
             begin
                 o_VSync = 1'b1;
             end
