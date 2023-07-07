@@ -1,4 +1,4 @@
-NAME = lut
+NAME = blink
 
 PNR=nextpnr-ice40
 
@@ -13,7 +13,6 @@ all: $(NAME).bin
 
 %.bin: %.asc
 	icepack $< $@
-	#icebox_vlog $(NAME).asc > $(NAME)_chip.v
 
 %.asc: %.json
 	$(PNR) $(QUIET) --$(DEVICE) --package $(PACKAGE) --asc $@ --pcf $(PCF) --json $< 

@@ -1,4 +1,4 @@
-module top (input PIO1_02, input PIO1_03, output D1);
+module main (input PIO1_02, input PIO1_03, output D1);
 
 wire a, b;
 wire y;
