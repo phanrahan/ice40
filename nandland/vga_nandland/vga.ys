@@ -1,3 +1,0 @@
-read_verilog *.v
-synth_ice40 -top main
-write_json vga.json

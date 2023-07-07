@@ -1,6 +1,5 @@
 NAME = 7seg
 
-#PNR=arachne-pnr
 PNR=nextpnr-ice40
 
 DEVICE = hx1k
@@ -15,7 +14,6 @@ all: $(NAME).bin
 
 %.bin: %.asc
 	icepack $< $@
-	icebox_vlog $(NAME).asc > $(NAME)_chip.v
 
 %.asc: %.json
 	$(PNR) $(QUIET) --$(DEVICE) --package $(PACKAGE) --freq $(FREQ) --asc $@ --pcf $(PCF) --json $< 
