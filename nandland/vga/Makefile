@@ -1,6 +1,5 @@
 NAME = vga
 
-#PNR=arachne-pnr
 PNR=nextpnr-ice40
 
 DEVICE = hx1k
