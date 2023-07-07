@@ -12,14 +12,19 @@ module VGA
     localparam HEIGHT = 480;
 
     localparam H_SYNC_WIDTH = 96;
-    localparam H_FRONT_PORCH = 16;
     localparam H_BACK_PORCH = 48;
-    localparam H_WIDTH = WIDTH + H_SYNC_WIDTH + H_FRONT_PORCH + H_BACK_BORCH;
+    localparam H_FRONT_PORCH = 16;
+    localparam H_BEGIN = H_SYNC_WIDTH + H_BACK_PORCH;
+    localparam H_END = H_BEGIN + WIDTH;
+    localparam H_WIDTH = H_SYNC_WIDTH + H_BACK_PORCH + WIDTH + H_FRONT_PORCH;
+
 
     localparam V_SYNC_WIDTH =  2;
-    localparam V_FRONT_PORCH = 11;
-    localparam V_BACK_PORCH = 31;
-    localparam V_HEIGHT = HEIGHT + V_SYNC_WIDTH + V_FRONT_PORCH + V_BACK_BORCH;
+    localparam V_BACK_PORCH = 33;
+    localparam V_FRONT_PORCH = 10;
+    localparam V_BEGIN = V_SYNC_WIDTH + V_BACK_PORCH;
+    localparam V_END = V_BEGIN + HEIGHT;
+    localparam V_HEIGHT = V_SYNC_WIDTH + V_BACK_PORCH + HEIGHT + V_FRONT_PORCH;
 
     reg [11:0] r_HPos = 0;
     reg [11:0] r_VPos = 0;
@@ -50,11 +55,13 @@ module VGA
         begin
           if (r_HPos < H_SYNC_WIDTH)
             begin
-                o_HSync = 1'b1;
+                o_HSync = 1'b0;
+                //o_HSync = 1'b1;
             end
           else
             begin
-                o_HSync = 1'b0;
+                o_HSync = 1'b1;
+                //o_HSync = 1'b0;
             end  
         end
  
@@ -63,18 +70,20 @@ module VGA
         begin
           if (r_VPos < V_SYNC_WIDTH)
             begin
-                o_VSync = 1'b1;
+                o_VSync = 1'b0;
+                //o_VSync = 1'b1;
             end
           else
             begin
-                o_VSync = 1'b0;
+                o_VSync = 1'b1;
+                //o_VSync = 1'b0;
             end  
         end
  
     //Valid region
     always @(posedge i_Clk)
         begin
-          if ((r_HPos >= H_PORCH & r_HPos < 690) & (r_VPos >= V_PORCH & r_VPos < 513))
+          if ((r_HPos >= H_BEGIN & r_HPos < H_END) & (r_VPos >= V_BEGIN & r_VPos < V_END ))
             begin
                 o_valid = 1'b1;
             end
@@ -84,10 +93,8 @@ module VGA
             end  
         end
 
-    //assign o_x = r_HPos - H_PORCH;
-    //assign o_y = r_VPos - V_PORCH;
-    assign o_x = r_HPos;
-    assign o_y = r_VPos;
+    assign o_x = r_HPos - H_BEGIN;
+    assign o_y = r_VPos - V_BEGIN;
  
 endmodule
 
@@ -115,14 +122,14 @@ module main
         .o_valid(w_valid)
     );
 
-    wire on = w_valid;
+    //wire on = w_valid;
     //wire on = w_valid & w_x[4];
-    //wire on = w_valid & (w_x[0] ^ w_y[0]);
+    wire on = w_valid & (w_x[0] ^ w_y[0]);
+
     wire [2:0] value = {on, on, on};
 
-    //assign VGA_R = w_x[0:2];
     assign VGA_R = value;
-    assign VGA_G = 3'b0;
-    assign VGA_B = 3'b0;
+    assign VGA_G = value;
+    assign VGA_B = value;
  
 endmodule
