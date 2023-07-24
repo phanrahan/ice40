@@ -3,25 +3,25 @@ module VGA
         input i_Clk,
         output reg o_HSync = 0,
         output reg o_VSync = 0,
-        output [11:0] o_x = 0,
-        output [11:0] o_y = 0,
-        output reg o_valid = 0
+        output reg o_valid = 0,
+        output [11:0] o_x,
+        output [11:0] o_y
     );
  
     localparam WIDTH = 640;
     localparam HEIGHT = 480;
 
+    localparam H_FRONT_PORCH = 16;
     localparam H_SYNC_WIDTH = 96;
     localparam H_BACK_PORCH = 48;
-    localparam H_FRONT_PORCH = 16;
     localparam H_BEGIN = H_SYNC_WIDTH + H_BACK_PORCH;
     localparam H_END = H_BEGIN + WIDTH;
     localparam H_WIDTH = H_SYNC_WIDTH + H_BACK_PORCH + WIDTH + H_FRONT_PORCH;
 
 
+    localparam V_FRONT_PORCH = 10;
     localparam V_SYNC_WIDTH =  2;
     localparam V_BACK_PORCH = 33;
-    localparam V_FRONT_PORCH = 10;
     localparam V_BEGIN = V_SYNC_WIDTH + V_BACK_PORCH;
     localparam V_END = V_BEGIN + HEIGHT;
     localparam V_HEIGHT = V_SYNC_WIDTH + V_BACK_PORCH + HEIGHT + V_FRONT_PORCH;
@@ -117,9 +117,9 @@ module main
         .i_Clk(CLK),
         .o_HSync(VGA_HSync),
         .o_VSync(VGA_VSync),
+        .o_valid(w_valid),
         .o_x(w_x),
-        .o_y(w_y),
-        .o_valid(w_valid)
+        .o_y(w_y)
     );
 
     wire on = w_valid;
