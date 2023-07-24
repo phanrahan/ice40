@@ -16,6 +16,7 @@ module VGA
     localparam H_BACK_PORCH = 48;
     localparam H_BEGIN = H_SYNC_WIDTH + H_BACK_PORCH;
     localparam H_END = H_BEGIN + WIDTH;
+    // 640+16+96+48=800
     localparam H_WIDTH = H_SYNC_WIDTH + H_BACK_PORCH + WIDTH + H_FRONT_PORCH;
 
 
@@ -24,6 +25,7 @@ module VGA
     localparam V_BACK_PORCH = 33;
     localparam V_BEGIN = V_SYNC_WIDTH + V_BACK_PORCH;
     localparam V_END = V_BEGIN + HEIGHT;
+    // 480+10+2+33=525
     localparam V_HEIGHT = V_SYNC_WIDTH + V_BACK_PORCH + HEIGHT + V_FRONT_PORCH;
 
     reg [11:0] r_HPos = 0;
