@@ -122,9 +122,9 @@ module main
         .o_y(w_y)
     );
 
-    wire on = w_valid;
+    //wire on = w_valid;
     //wire on = w_valid & w_x[4];
-    //wire on = w_valid & (w_x[0] ^ w_y[0]);
+    wire on = w_valid & (w_x[4] ^ w_y[4]);
 
     wire [2:0] value = {on, on, on};
 
