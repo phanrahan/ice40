@@ -2,19 +2,25 @@
 
 These examples use the yosys, next-pnr, and icestorm open source tool chain.
 
-Yosys 
-=====
+These examples have been tested on macbooks.
+All the tools should run on linux and windows.
+
+### Yosys 
 
 Complete setup instructions at [yosys](https://github.com/YosysHQ/yosys)
 
+Install prerequisites:
 ```
 $ brew install bison gawk pkg-config graphviz libftdi0 libffi tcl-tk \
   boost boost-python3 qt5 eigen libusb libusb-compat 
+```
+
+Install yosys:
+```
 $ brew install yosys
 ```
 
-NextPNR
-=======
+### NextPNR
 
 Complete setup instructions at [nextpnr](https://github.com/YosysHQ/nextpnr)
 
@@ -31,8 +37,7 @@ $ make -j 4
 $ sudo make install
 ```
 
-IceStorm 
-========
+### IceStorm 
 
 Complete setup instructions at [icestorm](https://github.com/YosysHQ/icestorm)
 
