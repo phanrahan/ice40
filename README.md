@@ -11,7 +11,7 @@ Complete setup instructions at [yosys](https://github.com/YosysHQ/yosys)
 
 Install prerequisites:
 ```
-$ brew install bison gawk pkg-config graphviz libftdi0 libffi tcl-tk \
+$ brew install cmake bison gawk pkg-config graphviz libftdi libffi tcl-tk \
   boost boost-python3 qt5 eigen libusb libusb-compat 
 ```
 
