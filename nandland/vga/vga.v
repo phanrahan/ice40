@@ -126,12 +126,16 @@ module main
 
     //wire on = w_valid;
     //wire on = w_valid & w_x[4];
-    //wire on = w_valid & (w_x[4] ^ w_y[4]);
+    wire on = w_valid & (w_x[4] ^ w_y[4]);
 
-    //wire [2:0] value = {on, on, on};
+    wire [2:0] value = {on, on, on};
 
-    assign VGA_R = w_valid ? w_x[4:2] : 3'b0;
-    assign VGA_G = w_valid ? w_x[4:2] : 3'b0;
-    assign VGA_B = w_valid ? w_x[4:2] : 3'b0;
+    assign VGA_R = value;
+    assign VGA_G = value;
+    assign VGA_B = value;
+
+    //assign VGA_R = w_valid ? w_x[4:2] : 3'b0;
+    //assign VGA_G = w_valid ? w_x[4:2] : 3'b0;
+    //assign VGA_B = w_valid ? w_x[4:2] : 3'b0;
  
 endmodule
